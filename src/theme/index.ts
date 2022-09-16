@@ -6,4 +6,16 @@ export const colors = {
   grayIcon: "#434D5C",
   blueAccent: "#4181F2",
   grayLine: "#CFD3D9",
+  shadowColor: "#E5E5E5",
+};
+
+export const defaultShadow = {
+  shadowColor: colors.shadowColor,
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 1,
+  shadowRadius: 3.84,
+  elevation: 5,
 };
