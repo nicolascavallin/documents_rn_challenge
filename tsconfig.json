@@ -12,6 +12,7 @@
       "@components/*": ["src/components/*"],
       "@theme/*": ["src/theme/*"],
       "@utils/*": ["src/utils/*"],
+      "@assets/*": ["assets/*"],
     },
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
