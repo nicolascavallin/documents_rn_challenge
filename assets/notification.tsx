@@ -1,13 +1,14 @@
 import * as React from "react";
 import { memo } from "react";
 
+import { colors } from "@theme";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 const SvgComponent = (props: SvgProps) => (
   <Svg
     fill="none"
     height={18}
-    stroke={"#000"}
+    stroke={colors.grayIcon}
     strokeWidth={2.1}
     viewBox="0 0 24 24"
     width={18}

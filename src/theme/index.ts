@@ -6,7 +6,7 @@ export const colors = {
   grayIcon: "#434D5C",
   blueAccent: "#4181F2",
   grayLine: "#CFD3D9",
-  shadowColor: "#E5E5E5",
+  shadowColor: "#D9D9D9",
 };
 
 export const defaultShadow = {

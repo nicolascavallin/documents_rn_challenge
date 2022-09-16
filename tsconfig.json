@@ -10,7 +10,8 @@
       // Components is a directory with sub directories
       "@screens/*": ["src/screens/*"],
       "@components/*": ["src/components/*"],
-      "@theme/*": ["src/theme/*", "src/theme/index.ts"],
+      "@theme": ["src/theme/index.ts"],
+      "@theme/*": ["src/theme/*",],
       "@utils/*": ["src/utils/*"],
       "@assets/*": ["assets/*"],
     },
