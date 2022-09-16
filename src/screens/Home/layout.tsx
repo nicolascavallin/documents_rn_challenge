@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useState } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 
 import DocumentItem from "@components/DocumentItem";
 import Header from "@components/Header";
@@ -41,6 +41,9 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
         key={useGrid ? "grid" : "list"}
         ListHeaderComponent={ListHeaderComponent}
         numColumns={useGrid ? 2 : 1}
+        refreshControl={
+          <RefreshControl refreshing={false} onRefresh={() => {}} />
+        }
         renderItem={({ item }) => (
           <DocumentItem item={item} key={item} smallVersion={useGrid} />
         )}

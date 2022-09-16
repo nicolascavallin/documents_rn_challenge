@@ -5,6 +5,8 @@ import { colors } from "@theme";
 export default StyleSheet.create({
   container: {
     backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.grayLine,
   },
   content: {
     flex: 1,
