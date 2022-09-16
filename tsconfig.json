@@ -8,10 +8,10 @@
     "paths": {
       // This needs to be mirrored in babel.config.js
       // Components is a directory with sub directories
-      "@screens/*": ["src/screens/*"]
-
-      // We want to expose the exports of the buttons index file
-      // "buttons": ["src/components/buttons/index"]
+      "@screens/*": ["src/screens/*"],
+      "@components/*": ["src/components/*"],
+      "@theme/*": ["src/theme/*"],
+      "@utils/*": ["src/utils/*"],
     },
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
