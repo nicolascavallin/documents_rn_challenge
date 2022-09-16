@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { Pressable, Text } from "react-native";
 
-import { colors } from "@theme/";
 import { springIn, springOut } from "@utils/reanimated";
 import Animated, {
   useAnimatedStyle,
@@ -43,7 +42,7 @@ const IconButton: FC<IconButtonProps> = ({ icon, badge = 0 }) => {
 
   return (
     <Pressable style={styles.container}>
-      <IconComponent stroke={colors.grayIcon} />
+      <IconComponent />
       <Animated.View style={[styles.badgeContainer, badgeAnimatedStyle]}>
         <Text style={styles.badgeText}>{badgeValue}</Text>
       </Animated.View>
