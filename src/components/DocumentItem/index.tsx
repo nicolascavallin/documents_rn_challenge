@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { Text, View } from "react-native";
 
-import AttachedIcon from "@assets/attached";
-import GroupIcon from "@assets/group";
+import AttachedIcon from "@assets/icons/attached";
+import GroupIcon from "@assets/icons/group";
 import { cardColumn, cardGrid } from "@theme/cardSize";
 
 import styles from "./styles";

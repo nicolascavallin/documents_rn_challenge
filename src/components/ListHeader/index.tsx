@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { TouchableOpacity, View } from "react-native";
 
-import ArrowDownIcon from "@assets/arrow-down";
-import ColumnIcon from "@assets/column";
-import GridIcon from "@assets/grid";
+import ArrowDownIcon from "@assets/icons/arrow-down";
+import ColumnIcon from "@assets/icons/column";
+import GridIcon from "@assets/icons/grid";
 import { colors } from "@theme";
 
 import styles from "./styles";
