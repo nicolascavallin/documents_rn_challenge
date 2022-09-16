@@ -13,6 +13,8 @@
       "@theme": ["src/theme/index.ts"],
       "@theme/*": ["src/theme/*",],
       "@utils/*": ["src/utils/*"],
+      "@context": ["src/context/index.tsx"],
+      "@context/*": ["src/context/*"],
       "@assets/*": ["assets/*"],
     },
     /* Completeness */
