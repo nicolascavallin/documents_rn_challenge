@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { Pressable, Text } from "react-native";
 
-import colors from "@theme/colors";
+import { colors } from "@theme/";
 import { springIn, springOut } from "@utils/reanimated";
 import Animated, {
   useAnimatedStyle,
