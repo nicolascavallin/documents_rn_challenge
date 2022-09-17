@@ -17,7 +17,7 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
     <View style={[styles.container, { height, paddingTop }]}>
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
-        <IconButton badge={1} icon="notification" />
+        <IconButton badge={2} icon="notification" />
       </View>
     </View>
   );

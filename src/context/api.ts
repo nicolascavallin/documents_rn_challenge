@@ -19,15 +19,15 @@ export default {
       const response = await request.json();
 
       /**
-       * Probably is missing a normalization function, not needed now considering
+       * Probably is missing a normalization function. Not needed now considering
        * the API response is already normalized.
        */
 
-      setStatus(Status.ready);
       setDocuments(response);
+      setStatus(Status.ready);
     } catch (error) {
-      setStatus(Status.error);
       setDocuments([]);
+      setStatus(Status.error);
     }
   },
 };

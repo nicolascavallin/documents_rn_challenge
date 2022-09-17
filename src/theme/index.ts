@@ -19,3 +19,5 @@ export const defaultShadow = {
   shadowRadius: 3.84,
   elevation: 5,
 };
+
+export const activeOpacity = 0.7;

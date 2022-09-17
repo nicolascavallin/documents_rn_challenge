@@ -39,6 +39,34 @@ module.exports = {
             pattern: "@src/**",
             group: "internal",
           },
+          {
+            pattern: "@theme/**",
+            group: "internal",
+          },
+          {
+            pattern: "@theme",
+            group: "internal",
+          },
+          {
+            pattern: "@components/**",
+            group: "internal",
+          },
+          {
+            pattern: "@screens/**",
+            group: "internal",
+          },
+          {
+            pattern: "@assets/**",
+            group: "internal",
+          },
+          {
+            pattern: "@context/**",
+            group: "internal",
+          },
+          {
+            pattern: "@utils/**",
+            group: "internal",
+          },
         ],
         pathGroupsExcludedImportTypes: ["internal", "react"],
         "newlines-between": "always",

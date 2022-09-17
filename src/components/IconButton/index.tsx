@@ -1,12 +1,13 @@
 import React, { FC, useEffect } from "react";
 import { Pressable, Text } from "react-native";
 
-import { springIn, springOut } from "@utils/reanimated";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+
+import { springIn, springOut } from "@utils/reanimated";
 
 import styles from "./styles";
 import { Icon, icons } from "./utils";

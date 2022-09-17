@@ -1,12 +1,13 @@
 import React, { FC, useCallback } from "react";
 import { Text, View } from "react-native";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 import AttachedIcon from "@assets/icons/attached";
 import GroupIcon from "@assets/icons/group";
 import { Contributor, Document } from "@context/types";
 import { cardColumn, cardGrid } from "@theme/cardSize";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
