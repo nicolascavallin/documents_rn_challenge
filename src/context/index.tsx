@@ -15,15 +15,25 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const [status, setStatus] = useState<Status>(Status.idle);
   const [documents, setDocuments] = useState<Document[]>([]);
 
-  useEffect(() => {
+  /**
+   * Considering that there is no extra neededs for initial login,
+   * the pull to refresh method is reutilized for the initial .
+   */
+  const handlePullToRefresh = () => {
     api.getDocuments(setStatus).then(setDocuments);
+  };
+
+  useEffect(() => {
+    handlePullToRefresh();
   }, []);
 
   const state = {
     status,
     documents,
   };
-  const actions = {};
+  const actions = {
+    handlePullToRefresh,
+  };
 
   return (
     <AppContext.Provider value={{ state, actions }}>

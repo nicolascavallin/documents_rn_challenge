@@ -3,7 +3,9 @@ export interface Context {
     documents: Document[];
     status: Status;
   };
-  actions: {};
+  actions: {
+    handlePullToRefresh: () => void;
+  };
 }
 
 export enum Status {

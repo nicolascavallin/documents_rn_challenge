@@ -14,7 +14,7 @@ interface HomeScreenLayoutProps {}
 
 const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
   const { listPaddingBottom: paddingBottom } = useSafeArea();
-  const { documents, status } = useApp();
+  const { documents, status, handlePullToRefresh } = useApp();
 
   const [useGrid, setUseGrid] = useState(false);
 
@@ -32,6 +32,16 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
     [useGrid],
   );
 
+  const refreshControl = useMemo(
+    () => (
+      <RefreshControl
+        refreshing={status === Status.loading}
+        onRefresh={handlePullToRefresh}
+      />
+    ),
+    [handlePullToRefresh, status],
+  );
+
   return (
     <View style={styles.container}>
       <Header title="Documents" />
@@ -44,12 +54,7 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
         key={useGrid ? "grid" : "list"}
         ListHeaderComponent={ListHeaderComponent}
         numColumns={useGrid ? 2 : 1}
-        refreshControl={
-          <RefreshControl
-            refreshing={status === Status.loading}
-            onRefresh={() => {}}
-          />
-        }
+        refreshControl={refreshControl}
         renderItem={({ item }) => (
           <DocumentItem document={item} key={item.ID} smallVersion={useGrid} />
         )}
