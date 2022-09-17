@@ -1,36 +1,28 @@
-import React, { createContext, FC, PropsWithChildren, useRef } from "react";
+import React, {
+  createContext,
+  FC,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 
-import { Context } from "./types";
+import api from "./api";
+import { Context, Document, Status } from "./types";
 
 const AppContext = createContext({} as Context);
 
 const AppProvider: FC<PropsWithChildren> = ({ children }) => {
-  const ws = useRef(new WebSocket("ws://localhost:8080/notifications")).current;
+  const [status, setStatus] = useState<Status>(Status.idle);
+  const [documents, setDocuments] = useState<Document[]>([]);
 
-  React.useEffect(() => {
-    // const serverMessagesList = [];
-    ws.onopen = () => {
-      // setServerState('Connected to the server')
-      // setDisableButton(false);
-      console.log("open");
-    };
-    ws.onclose = e => {
-      // setServerState('Disconnected. Check internet or server.')
-      // setDisableButton(true);
-      console.log("close");
-    };
-    ws.onerror = e => {
-      // setServerState(e.message);
-      console.log("error");
-    };
-    ws.onmessage = e => {
-      // serverMessagesList.push(e.data);
-      // setServerMessages([...serverMessagesList])
-      console.log("msg", e.data);
-    };
-  }, [ws]);
+  useEffect(() => {
+    api.getDocuments(setStatus).then(setDocuments);
+  }, []);
 
-  const state = {};
+  const state = {
+    status,
+    documents,
+  };
   const actions = {};
 
   return (

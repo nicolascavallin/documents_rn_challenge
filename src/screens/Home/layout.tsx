@@ -4,6 +4,8 @@ import { FlatList, RefreshControl, View } from "react-native";
 import DocumentItem from "@components/DocumentItem";
 import Header from "@components/Header";
 import ListHeader from "@components/ListHeader";
+import useApp from "@context/hook";
+import { Status } from "@context/types";
 import useSafeArea from "@theme/useSafeArea";
 
 import styles from "./styles";
@@ -12,6 +14,7 @@ interface HomeScreenLayoutProps {}
 
 const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
   const { listPaddingBottom: paddingBottom } = useSafeArea();
+  const { documents, status } = useApp();
 
   const [useGrid, setUseGrid] = useState(false);
 
@@ -37,15 +40,18 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
           styles.contentContainerStyle,
           { paddingBottom },
         ]}
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+        data={documents}
         key={useGrid ? "grid" : "list"}
         ListHeaderComponent={ListHeaderComponent}
         numColumns={useGrid ? 2 : 1}
         refreshControl={
-          <RefreshControl refreshing={false} onRefresh={() => {}} />
+          <RefreshControl
+            refreshing={status === Status.loading}
+            onRefresh={() => {}}
+          />
         }
         renderItem={({ item }) => (
-          <DocumentItem item={item} key={item} smallVersion={useGrid} />
+          <DocumentItem document={item} key={item.ID} smallVersion={useGrid} />
         )}
       />
     </View>

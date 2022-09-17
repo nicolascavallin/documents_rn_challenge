@@ -1,22 +1,47 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { Text, View } from "react-native";
 
 import AttachedIcon from "@assets/icons/attached";
 import GroupIcon from "@assets/icons/group";
+import { Contributor, Document } from "@context/types";
 import { cardColumn, cardGrid } from "@theme/cardSize";
 
 import styles from "./styles";
 
 interface DocumentItemProps {
-  item: number;
+  document: Document;
   smallVersion?: boolean;
 }
 
-const DocumentItem: FC<DocumentItemProps> = ({ item, smallVersion }) => {
+const DocumentItem: FC<DocumentItemProps> = ({ document, smallVersion }) => {
   const width = smallVersion ? cardGrid : cardColumn;
 
+  const renderContributor = useCallback(
+    (contributor: Contributor) => (
+      <Text
+        key={contributor.ID}
+        numberOfLines={1}
+        style={[styles.smallText, styles.rowDataText]}>
+        {contributor.Name}
+      </Text>
+    ),
+    [],
+  );
+
+  const renderAttachment = useCallback(
+    (attachment: string, index: number) => (
+      <Text
+        key={`${index}-${attachment}`}
+        numberOfLines={1}
+        style={[styles.smallText, styles.rowDataText]}>
+        {attachment}
+      </Text>
+    ),
+    [],
+  );
+
   return (
-    <View key={`${item}`} style={[styles.container, { width }]}>
+    <View style={[styles.container, { width }]}>
       <View style={[!smallVersion && styles.row]}>
         <Text
           numberOfLines={1}
@@ -24,9 +49,9 @@ const DocumentItem: FC<DocumentItemProps> = ({ item, smallVersion }) => {
             styles.title,
             smallVersion ? styles.titleRow : styles.titleColumn,
           ]}>
-          Hop Rod Rye
+          {document.Title}
         </Text>
-        <Text style={[styles.smallText]}>Version 2.6.16</Text>
+        <Text style={[styles.smallText]}>Version {document.Version}</Text>
       </View>
       {!smallVersion ? (
         <View style={styles.dataContainer}>
@@ -35,57 +60,14 @@ const DocumentItem: FC<DocumentItemProps> = ({ item, smallVersion }) => {
               <GroupIcon />
               <Text style={styles.rowTitle}>Contributors</Text>
             </View>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Carlie Abott
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Zoe Buckridge
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Carmen Kohler
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Americo
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Comier
-            </Text>
+            {document.Contributors.map(renderContributor)}
           </View>
           <View style={styles.rowDataContainer}>
             <View style={styles.rowTitleContainer}>
               <AttachedIcon />
               <Text style={styles.rowTitle}>Attachments</Text>
             </View>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Light Lager
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Porter
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              Sour Ale
-            </Text>
-            <Text
-              numberOfLines={1}
-              style={[styles.smallText, styles.rowDataText]}>
-              German Wheat
-            </Text>
+            {document.Attachments.map(renderAttachment)}
           </View>
         </View>
       ) : null}
