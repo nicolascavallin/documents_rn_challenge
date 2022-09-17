@@ -32,6 +32,9 @@ export default StyleSheet.create({
     fontSize: 13,
     fontWeight: "500",
   },
+  textLimiter: {
+    flex: 1,
+  },
   dataContainer: {
     marginTop: 12,
     flexDirection: "row",

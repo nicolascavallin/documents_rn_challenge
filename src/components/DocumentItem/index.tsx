@@ -48,6 +48,7 @@ const DocumentItem: FC<DocumentItemProps> = ({ document, smallVersion }) => {
           style={[
             styles.title,
             smallVersion ? styles.titleRow : styles.titleColumn,
+            !smallVersion && styles.textLimiter,
           ]}>
           {document.Title}
         </Text>
