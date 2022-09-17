@@ -5,6 +5,10 @@ import AttachedIcon from "@assets/icons/attached";
 import GroupIcon from "@assets/icons/group";
 import { Contributor, Document } from "@context/types";
 import { cardColumn, cardGrid } from "@theme/cardSize";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 import styles from "./styles";
 
@@ -55,22 +59,36 @@ const DocumentItem: FC<DocumentItemProps> = ({ document, smallVersion }) => {
         <Text style={[styles.smallText]}>Version {document.Version}</Text>
       </View>
       {!smallVersion ? (
-        <View style={styles.dataContainer}>
-          <View style={styles.rowDataContainer}>
-            <View style={styles.rowTitleContainer}>
-              <GroupIcon />
-              <Text style={styles.rowTitle}>Contributors</Text>
+        <>
+          <View style={styles.dataContainer}>
+            <View style={styles.rowDataContainer}>
+              <View style={styles.rowTitleContainer}>
+                <GroupIcon />
+                <Text style={styles.rowTitle}>Contributors</Text>
+              </View>
+              {document.Contributors.map(renderContributor)}
             </View>
-            {document.Contributors.map(renderContributor)}
-          </View>
-          <View style={styles.rowDataContainer}>
-            <View style={styles.rowTitleContainer}>
-              <AttachedIcon />
-              <Text style={styles.rowTitle}>Attachments</Text>
+            <View style={styles.rowDataContainer}>
+              <View style={styles.rowTitleContainer}>
+                <AttachedIcon />
+                <Text style={styles.rowTitle}>Attachments</Text>
+              </View>
+              {document.Attachments.map(renderAttachment)}
             </View>
-            {document.Attachments.map(renderAttachment)}
           </View>
-        </View>
+          <View style={styles.dataContainer}>
+            <View style={styles.rowDataContainer}>
+              <Text numberOfLines={1} style={[styles.smallText]}>
+                Created {dayjs().to(document.CreatedAt)}
+              </Text>
+            </View>
+            <View style={styles.rowDataContainer}>
+              <Text numberOfLines={1} style={[styles.smallText]}>
+                Updated {dayjs().to(document.UpdatedAt)}
+              </Text>
+            </View>
+          </View>
+        </>
       ) : null}
     </View>
   );
