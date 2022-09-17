@@ -19,9 +19,8 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
    * Considering that there is no extra neededs for initial login,
    * the pull to refresh method is reutilized for the initial .
    */
-  const handlePullToRefresh = () => {
-    api.getDocuments(setStatus).then(setDocuments);
-  };
+  const handlePullToRefresh = () =>
+    api.getDocuments({ setStatus, setDocuments });
 
   useEffect(() => {
     handlePullToRefresh();
