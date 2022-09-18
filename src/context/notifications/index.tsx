@@ -19,7 +19,7 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
   const ws = useRef(new WebSocket(WS_URL)).current;
   useEffect(() => {
     ws.onmessage = (event: WebSocketMessageEvent) => {
-      setNotifications(oldStatus => [event.data, ...oldStatus]);
+      setNotifications(oldStatus => [JSON.parse(event.data), ...oldStatus]);
     };
     return () => {
       setNotifications([]);

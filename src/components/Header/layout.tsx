@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 import { Text, View } from "react-native";
 
+import { useCustomBottomSheet } from "@components/BottomSheet/hook";
 import IconButton from "@components/IconButton";
 import useNotifications from "@context/notifications/hook";
+import Notifications from "@screens/Notifications";
 import useSafeArea from "@theme/useSafeArea";
 
 import styles from "./styles";
@@ -13,19 +15,24 @@ export interface HeaderLayoutProps {
 
 const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
   const { headerHeight: height, paddingTop } = useSafeArea();
+
   const { notifications } = useNotifications();
+  const { ref, onPresent } = useCustomBottomSheet();
 
   return (
-    <View style={[styles.container, { height, paddingTop }]}>
-      <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
-        <IconButton
-          badge={notifications.length}
-          icon="notification"
-          onPress={() => {}}
-        />
+    <>
+      <View style={[styles.container, { height, paddingTop }]}>
+        <View style={styles.content}>
+          <Text style={styles.title}>{title}</Text>
+          <IconButton
+            badge={notifications.length}
+            icon="notification"
+            onPress={onPresent}
+          />
+        </View>
       </View>
-    </View>
+      <Notifications notifications={notifications} ref={ref} />
+    </>
   );
 };
 
