@@ -14,12 +14,12 @@ interface FooterButtonProps {}
 
 const FooterButton: FC<FooterButtonProps> = ({}) => {
   const { paddingBottom } = useSafeArea();
-  const { ref, onPresent } = useCustomBottomSheet();
+  const { ref, handleOpenModal } = useCustomBottomSheet();
 
   return (
     <>
       <View style={[styles.container, { paddingBottom }]}>
-        <Button onPress={onPresent}>
+        <Button onPress={handleOpenModal}>
           <PlusIcon stroke={colors.white} />
           <Text style={styles.textButton}>Add document</Text>
         </Button>

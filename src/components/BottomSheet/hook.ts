@@ -8,10 +8,12 @@ export const useCustomBottomSheet = () => {
   const { dismiss } = useBottomSheetModal();
 
   const ref = useRef<BottomSheetModal>(null);
-  const [canBeClosed, setCanBeClosed] = useState(false);
+  const [canModalBeClosed, setCanModalBeClosed] = useState(true);
 
-  const onClose = () => {
-    if (canBeClosed) {
+  const handleOpenModal = () => ref?.current?.present();
+
+  const handleCloseModal = () => {
+    if (canModalBeClosed) {
       dismiss();
     } else {
       Alert.alert(
@@ -32,7 +34,12 @@ export const useCustomBottomSheet = () => {
     }
   };
 
-  const onPresent = () => ref?.current?.present();
-
-  return { ref, canBeClosed, setCanBeClosed, onPresent, onClose };
+  return {
+    ref,
+    handleOpenModal,
+    handleCloseModal,
+    canModalBeClosed,
+    //
+    setCanModalBeClosed,
+  };
 };

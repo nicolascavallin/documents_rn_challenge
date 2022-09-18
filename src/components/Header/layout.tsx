@@ -17,7 +17,7 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
   const { headerHeight: height, paddingTop } = useSafeArea();
 
   const { notifications, markNotificationsAsViewed } = useNotifications();
-  const { ref, onPresent } = useCustomBottomSheet();
+  const { ref, handleOpenModal } = useCustomBottomSheet();
 
   const unviewedNotifications = notifications.filter(
     notification => !notification.Viewed,
@@ -31,7 +31,7 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
           <IconButton
             badge={unviewedNotifications}
             icon="notification"
-            onPress={onPresent}
+            onPress={handleOpenModal}
           />
         </View>
       </View>
