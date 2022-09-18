@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { Pressable, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 
 import Animated, {
   useAnimatedStyle,
