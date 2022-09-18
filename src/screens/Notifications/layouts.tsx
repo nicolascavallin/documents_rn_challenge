@@ -30,7 +30,7 @@ const NotificationsLayout: FC<NotificationsLayoutProps> = ({
         {!item.Viewed ? <View style={styles.notificationBadge} /> : null}
         <Text style={styles.notificationText}>
           <Text style={styles.notificationName}>{item.UserName}</Text> has
-          modified "{item.DocumentTitle}"
+          created "{item.DocumentTitle}"
         </Text>
         <Text style={styles.notificationTime}>
           {dayjs().to(dayjs(item.Timestamp))}
