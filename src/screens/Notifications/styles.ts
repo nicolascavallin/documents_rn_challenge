@@ -10,7 +10,7 @@ export default StyleSheet.create({
     borderTopColor: colors.grayLine,
   },
   notificationText: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: "500",
     color: colors.blackText,
   },
@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   notificationTime: {
     color: colors.grayText,
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "500",
     marginTop: 4,
   },
