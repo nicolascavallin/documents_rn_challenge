@@ -1,11 +1,15 @@
 export interface Context {
   state: {
-    documents: Document[];
-    status: Status;
+    apiData: ApiData;
   };
   actions: {
     handlePullToRefresh: () => void;
   };
+}
+
+export interface ApiData {
+  status: Status;
+  documents: Document[];
 }
 
 export enum Status {

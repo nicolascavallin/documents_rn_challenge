@@ -6,7 +6,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 import AttachedIcon from "@assets/icons/attached";
 import GroupIcon from "@assets/icons/group";
-import { Contributor, Document } from "@context/types";
+import { Contributor, Document } from "@context/app/types";
 import { cardColumn, cardGrid } from "@theme/cardSize";
 
 dayjs.extend(relativeTime);
@@ -46,7 +46,7 @@ const DocumentItem: FC<DocumentItemProps> = ({ document, smallVersion }) => {
   );
 
   return (
-    <View style={[styles.container, { width }]}>
+    <View key={document.ID} style={[styles.container, { width }]}>
       <View style={[!smallVersion && styles.row]}>
         <Text
           numberOfLines={1}

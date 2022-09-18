@@ -15,9 +15,10 @@ import { Icon, icons } from "./utils";
 interface IconButtonProps {
   icon: Icon;
   badge?: number;
+  onPress: () => void;
 }
 
-const IconButton: FC<IconButtonProps> = ({ icon, badge = 0 }) => {
+const IconButton: FC<IconButtonProps> = ({ icon, badge = 0, onPress }) => {
   const badgeAnimatedValue = useSharedValue(0);
 
   const badgeAnimatedStyle = useAnimatedStyle(() => ({
@@ -42,7 +43,7 @@ const IconButton: FC<IconButtonProps> = ({ icon, badge = 0 }) => {
   const IconComponent = icons[icon];
 
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <IconComponent />
       <Animated.View style={[styles.badgeContainer, badgeAnimatedStyle]}>
         <Text style={styles.badgeText}>{badgeValue}</Text>

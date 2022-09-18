@@ -12,6 +12,7 @@ interface FooterButtonProps {}
 
 const FooterButton: FC<FooterButtonProps> = ({}) => {
   const { paddingBottom } = useSafeArea();
+
   return (
     <View style={[styles.container, { paddingBottom }]}>
       <Button>
