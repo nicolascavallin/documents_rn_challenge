@@ -10,12 +10,19 @@ import NotificationsLayout from "./layouts";
 
 interface NotificationsProps {
   notifications: Notification[];
+  markNotificationsAsViewed: () => void;
 }
 
 const Notifications = forwardRef(
-  ({ notifications }: NotificationsProps, ref: Ref<BottomSheetModal>) => {
+  (
+    { notifications, markNotificationsAsViewed }: NotificationsProps,
+    ref: Ref<BottomSheetModal>,
+  ) => {
     return (
-      <BottomSheet ref={ref} snapPoints={["50%", "80%"]}>
+      <BottomSheet
+        ref={ref}
+        snapPoints={["50%", "80%"]}
+        onClose={markNotificationsAsViewed}>
         <NotificationsLayout notifications={notifications} />
       </BottomSheet>
     );

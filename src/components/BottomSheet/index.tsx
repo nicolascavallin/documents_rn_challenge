@@ -17,6 +17,7 @@ import { colors } from "@theme";
 interface BottomSheetProps {
   snapPoints?: string[];
   enablePanDownToClose?: boolean;
+  onClose?: () => void;
 }
 
 const BottomSheet = forwardRef(
@@ -24,15 +25,21 @@ const BottomSheet = forwardRef(
     {
       snapPoints: _snapPoints,
       enablePanDownToClose = true,
+      onClose,
       children,
     }: PropsWithChildren<BottomSheetProps>,
     bottomSheetModalRef: Ref<BottomSheetModal>,
   ) => {
     const snapPoints = useMemo(() => _snapPoints || ["50%"], [_snapPoints]);
 
-    const handleSheetChanges = useCallback((index: number) => {
-      console.log("handleSheetChanges", index);
-    }, []);
+    const handleSheetChanges = useCallback(
+      (index: number) => {
+        if (index === -1) {
+          onClose?.();
+        }
+      },
+      [onClose],
+    );
 
     const renderBackdrop = useCallback(
       (props: BottomSheetBackdropProps) => (
@@ -52,11 +59,9 @@ const BottomSheet = forwardRef(
         backdropComponent={renderBackdrop}
         enableDismissOnClose={true}
         enablePanDownToClose={enablePanDownToClose}
-        handleIndicatorStyle={{}}
         index={0}
         ref={bottomSheetModalRef}
         snapPoints={snapPoints}
-        onAnimate={console.log}
         onChange={handleSheetChanges}>
         {children}
       </BottomSheetModal>

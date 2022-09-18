@@ -27,6 +27,7 @@ const NotificationsLayout: FC<NotificationsLayoutProps> = ({
       <View
         key={item.DocumentID + item.UserID}
         style={styles.notificationContainer}>
+        {!item.Viewed ? <View style={styles.notificationBadge} /> : null}
         <Text style={styles.notificationText}>
           <Text style={styles.notificationName}>{item.UserName}</Text> has
           modified "{item.DocumentTitle}"

@@ -19,7 +19,13 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
   const ws = useRef(new WebSocket(WS_URL)).current;
   useEffect(() => {
     ws.onmessage = (event: WebSocketMessageEvent) => {
-      setNotifications(oldStatus => [JSON.parse(event.data), ...oldStatus]);
+      setNotifications(oldStatus => [
+        {
+          ...JSON.parse(event.data),
+          Viewed: false,
+        },
+        ...oldStatus,
+      ]);
     };
     return () => {
       setNotifications([]);
@@ -27,10 +33,21 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
     };
   }, [ws]);
 
+  const markNotificationsAsViewed = () => {
+    setNotifications(oldStatus =>
+      oldStatus.map(notification => ({
+        ...notification,
+        Viewed: true,
+      })),
+    );
+  };
+
   const state = {
     notifications,
   };
-  const actions = {};
+  const actions = {
+    markNotificationsAsViewed,
+  };
 
   return (
     <NotificationsContext.Provider value={{ state, actions }}>

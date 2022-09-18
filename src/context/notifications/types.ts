@@ -2,7 +2,9 @@ export interface Context {
   state: {
     notifications: Notification[];
   };
-  actions: {};
+  actions: {
+    markNotificationsAsViewed: () => void;
+  };
 }
 
 export interface Notification {
@@ -11,4 +13,5 @@ export interface Notification {
   UserName: string;
   DocumentID: string;
   DocumentTitle: string;
+  Viewed: boolean;
 }

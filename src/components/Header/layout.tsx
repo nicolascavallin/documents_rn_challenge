@@ -16,8 +16,12 @@ export interface HeaderLayoutProps {
 const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
   const { headerHeight: height, paddingTop } = useSafeArea();
 
-  const { notifications } = useNotifications();
+  const { notifications, markNotificationsAsViewed } = useNotifications();
   const { ref, onPresent } = useCustomBottomSheet();
+
+  const unviewedNotifications = notifications.filter(
+    notification => !notification.Viewed,
+  ).length;
 
   return (
     <>
@@ -25,13 +29,17 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>
           <IconButton
-            badge={notifications.length}
+            badge={unviewedNotifications}
             icon="notification"
             onPress={onPresent}
           />
         </View>
       </View>
-      <Notifications notifications={notifications} ref={ref} />
+      <Notifications
+        markNotificationsAsViewed={markNotificationsAsViewed}
+        notifications={notifications}
+        ref={ref}
+      />
     </>
   );
 };

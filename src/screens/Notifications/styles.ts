@@ -6,6 +6,7 @@ export default StyleSheet.create({
   notificationContainer: {
     marginHorizontal: 16,
     paddingVertical: 8,
+    paddingRight: 8,
     borderTopWidth: 1,
     borderTopColor: colors.grayLine,
   },
@@ -22,5 +23,14 @@ export default StyleSheet.create({
     fontSize: 12,
     fontWeight: "500",
     marginTop: 4,
+  },
+  notificationBadge: {
+    position: "absolute",
+    top: 13,
+    right: 4,
+    width: 6,
+    height: 6,
+    borderRadius: 6,
+    backgroundColor: colors.blueAccent,
   },
 });
