@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, TouchableOpacity } from "react-native";
 
 import Animated, {
   useAnimatedStyle,
@@ -7,6 +7,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 
+import { activeOpacity } from "@theme";
 import { springIn, springOut } from "@utils/reanimated";
 
 import styles from "./styles";
@@ -43,12 +44,15 @@ const IconButton: FC<IconButtonProps> = ({ icon, badge = 0, onPress }) => {
   const IconComponent = icons[icon];
 
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      activeOpacity={activeOpacity}
+      style={styles.container}
+      onPress={onPress}>
       <IconComponent />
       <Animated.View style={[styles.badgeContainer, badgeAnimatedStyle]}>
         <Text style={styles.badgeText}>{badgeValue}</Text>
       </Animated.View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
