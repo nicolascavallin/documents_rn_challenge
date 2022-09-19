@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { colors } from "@theme";
+import { colors, fonts } from "@theme";
 
 export default StyleSheet.create({
   container: {
@@ -9,9 +9,8 @@ export default StyleSheet.create({
     borderTopColor: colors.grayLine,
   },
   textButton: {
+    ...fonts.button,
     color: colors.white,
-    fontWeight: "600",
-    fontSize: 16,
     marginLeft: 4,
   },
 });

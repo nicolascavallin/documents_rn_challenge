@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { colors, defaultShadow } from "@theme";
+import { colors, defaultShadow, fonts } from "@theme";
 
 export default StyleSheet.create({
   container: {
@@ -16,22 +16,14 @@ export default StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
-  title: {
-    color: colors.blackText,
-    fontSize: 18,
-    fontWeight: "600",
-  },
+  title: fonts.title,
   titleRow: {
     marginBottom: 12,
   },
   titleColumn: {
     marginRight: 12,
   },
-  smallText: {
-    color: colors.grayText,
-    fontSize: 13,
-    fontWeight: "500",
-  },
+  smallText: fonts.smallText,
   textLimiter: {
     flex: 1,
   },
@@ -49,9 +41,7 @@ export default StyleSheet.create({
     marginBottom: 4,
   },
   rowTitle: {
-    color: colors.blackText,
-    fontSize: 14,
-    fontWeight: "600",
+    ...fonts.subtitle,
     marginLeft: 8,
   },
   rowDataText: {

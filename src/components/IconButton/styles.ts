@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { colors } from "@theme";
+import { colors, fonts } from "@theme";
 
 const BUTTON_SIZE = 36;
 const BADGE_SIZE = 18;
@@ -30,9 +30,8 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   badgeText: {
+    ...fonts.badge,
     color: colors.white,
-    fontWeight: "700",
-    fontSize: 9,
     textAlign: "center",
   },
 });
