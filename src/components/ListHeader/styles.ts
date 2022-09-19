@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { colors } from "@theme";
+import { colors, fonts } from "@theme";
 
 export default StyleSheet.create({
   container: {
@@ -18,11 +18,23 @@ export default StyleSheet.create({
     flexDirection: "row",
     backgroundColor: colors.white,
   },
+  dropdown: {
+    width: 190,
+  },
+  dropdownOption: {
+    ...fonts.selector,
+  },
+  dropdownSelected: {
+    ...fonts.selector,
+    marginLeft: 16,
+  },
   squareButton: {
     height: 36,
     width: 36,
     alignItems: "center",
     justifyContent: "center",
+    borderLeftWidth: 1,
+    borderLeftColor: colors.grayLine,
   },
   actionButton: {
     flex: 1,

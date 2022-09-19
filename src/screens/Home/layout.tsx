@@ -9,6 +9,7 @@ import useApp from "@context/app/hook";
 import { Document, Status } from "@context/app/types";
 
 import styles from "./styles";
+import { sortDocuments, SortOption } from "./utils";
 
 interface HomeScreenLayoutProps {}
 
@@ -18,6 +19,7 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
     handlePullToRefresh,
   } = useApp();
 
+  const [sortOption, setSortOption] = useState(SortOption.created_new);
   const [useGrid, setUseGrid] = useState(() => false);
 
   const handleSetGrid = () => setUseGrid(true);
@@ -28,10 +30,12 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
       <ListHeader
         setColumn={handleSetColumn}
         setGrid={handleSetGrid}
+        setSortOption={setSortOption}
+        sortOption={sortOption}
         useGrid={useGrid}
       />
     ),
-    [useGrid],
+    [sortOption, useGrid],
   );
 
   const refreshControl = useMemo(
@@ -52,13 +56,8 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
   );
 
   const documentsSorted = useMemo(
-    () =>
-      documents.sort((a, b) => {
-        const dateA = new Date(a.CreatedAt);
-        const dateB = new Date(b.CreatedAt);
-        return dateB.getTime() - dateA.getTime();
-      }),
-    [documents],
+    () => sortDocuments(documents, sortOption),
+    [documents, sortOption],
   );
 
   return (

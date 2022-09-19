@@ -53,6 +53,11 @@ export const fonts = StyleSheet.create({
     fontWeight: "700",
     fontSize: 9,
   },
+  selector: {
+    color: colors.blackText,
+    fontSize: 13,
+    fontWeight: "500",
+  },
 });
 
 export const activeOpacity = 0.7;
