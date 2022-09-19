@@ -18,9 +18,7 @@ const NotificationsContext = createContext({} as Context);
 
 const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
   //
-  const { ref, handleOpenModal } = useCustomBottomSheet();
-
-  const openNotifications = handleOpenModal;
+  const { ref, handleOpenModal: openNotifications } = useCustomBottomSheet();
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
