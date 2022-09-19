@@ -6,12 +6,24 @@ import React, {
   useState,
 } from "react";
 
+import { useCustomBottomSheet } from "@components/BottomSheet/hook";
+import NewDocument from "@screens/NewDocument";
+
 import api from "./api";
 import { ApiData, Context, Status } from "./types";
 
 const AppContext = createContext({} as Context);
 
 const AppProvider: FC<PropsWithChildren> = ({ children }) => {
+  //
+  const {
+    ref,
+    handleOpenModal: openNewDocument,
+    canModalBeClosed,
+    handleCloseModal,
+    setCanModalBeClosed,
+  } = useCustomBottomSheet();
+
   const [apiData, setApiData] = useState<ApiData>({
     status: Status.idle,
     documents: [],
@@ -32,11 +44,18 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   };
   const actions = {
     handlePullToRefresh,
+    openNewDocument,
   };
 
   return (
     <AppContext.Provider value={{ state, actions }}>
       {children}
+      <NewDocument
+        canModalBeClosed={canModalBeClosed}
+        handleClose={handleCloseModal}
+        ref={ref}
+        setCanModalBeClosed={setCanModalBeClosed}
+      />
     </AppContext.Provider>
   );
 };

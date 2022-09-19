@@ -1,13 +1,38 @@
-import React, { FC } from "react";
-import { Text, View } from "react-native";
+import React, { Dispatch, FC, SetStateAction } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 
-interface NewDocumentLayoutProps {}
+import { BottomSheetView } from "@gorhom/bottom-sheet";
 
-const NewDocumentLayout: FC<NewDocumentLayoutProps> = ({}) => {
+import CloseIcon from "@assets/icons/close";
+
+import styles from "./styles";
+
+interface NewDocumentLayoutProps {
+  handleClose: () => void;
+  setCanModalBeClosed: Dispatch<SetStateAction<boolean>>;
+}
+
+const NewDocumentLayout: FC<NewDocumentLayoutProps> = ({
+  handleClose,
+  setCanModalBeClosed,
+}) => {
   return (
-    <View>
-      <Text>Hola</Text>
-    </View>
+    <BottomSheetView>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Add document</Text>
+        <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity
+        style={{ height: 10, backgroundColor: "red" }}
+        onPress={() => setCanModalBeClosed(false)}
+      />
+      <TouchableOpacity
+        style={{ height: 10, backgroundColor: "blue" }}
+        onPress={() => setCanModalBeClosed(true)}
+      />
+    </BottomSheetView>
   );
 };
 

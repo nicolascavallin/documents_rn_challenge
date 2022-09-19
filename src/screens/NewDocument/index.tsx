@@ -1,4 +1,4 @@
-import React, { Ref } from "react";
+import React, { Dispatch, Ref, SetStateAction } from "react";
 import { forwardRef } from "react";
 
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -7,13 +7,26 @@ import BottomSheet from "@components/BottomSheet";
 
 import NewDocumentLayout from "./layout";
 
-interface NewDocumentProps {}
+interface NewDocumentProps {
+  canModalBeClosed: boolean;
+  handleClose: () => void;
+  setCanModalBeClosed: Dispatch<SetStateAction<boolean>>;
+}
 
 const NewDocument = forwardRef(
-  ({}: NewDocumentProps, ref: Ref<BottomSheetModal>) => {
+  (
+    { canModalBeClosed, handleClose, setCanModalBeClosed }: NewDocumentProps,
+    ref: Ref<BottomSheetModal>,
+  ) => {
     return (
-      <BottomSheet ref={ref} snapPoints={["80%"]}>
-        <NewDocumentLayout />
+      <BottomSheet
+        enablePanDownToClose={canModalBeClosed}
+        ref={ref}
+        snapPoints={["80%"]}>
+        <NewDocumentLayout
+          handleClose={handleClose}
+          setCanModalBeClosed={setCanModalBeClosed}
+        />
       </BottomSheet>
     );
   },

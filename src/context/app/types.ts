@@ -4,6 +4,7 @@ export interface Context {
   };
   actions: {
     handlePullToRefresh: () => void;
+    openNewDocument: () => void;
   };
 }
 
