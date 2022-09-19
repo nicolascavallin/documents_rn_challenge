@@ -6,7 +6,7 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import BottomSheet from "@components/BottomSheet";
 import { Notification } from "@context/notifications/types";
 
-import NotificationsLayout from "./layouts";
+import NotificationsLayout from "./layout";
 
 interface NotificationsProps {
   notifications: Notification[];
