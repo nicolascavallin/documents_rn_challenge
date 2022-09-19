@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { colors } from "@theme";
+import { colors, fonts } from "@theme";
 
 export default StyleSheet.create({
   notificationContainer: {
@@ -11,17 +11,15 @@ export default StyleSheet.create({
     borderTopColor: colors.grayLine,
   },
   notificationText: {
-    fontSize: 13,
-    fontWeight: "500",
+    ...fonts.smallText,
     color: colors.blackText,
   },
   notificationName: {
     fontWeight: "700",
   },
   notificationTime: {
-    color: colors.grayText,
+    ...fonts.smallText,
     fontSize: 12,
-    fontWeight: "500",
     marginTop: 4,
   },
   notificationBadge: {
