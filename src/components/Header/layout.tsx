@@ -1,10 +1,8 @@
 import React, { FC } from "react";
 import { Text, View } from "react-native";
 
-import { useCustomBottomSheet } from "@components/BottomSheet/hook";
 import IconButton from "@components/IconButton";
 import useNotifications from "@context/notifications/hook";
-import Notifications from "@screens/Notifications";
 import useSafeArea from "@theme/useSafeArea";
 
 import styles from "./styles";
@@ -16,8 +14,7 @@ export interface HeaderLayoutProps {
 const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
   const { headerHeight: height, paddingTop } = useSafeArea();
 
-  const { notifications, markNotificationsAsViewed } = useNotifications();
-  const { ref, handleOpenModal } = useCustomBottomSheet();
+  const { notifications, openNotifications } = useNotifications();
 
   const unviewedNotifications = notifications.filter(
     notification => !notification.Viewed,
@@ -31,15 +28,10 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({ title }) => {
           <IconButton
             badge={unviewedNotifications}
             icon="notification"
-            onPress={handleOpenModal}
+            onPress={openNotifications}
           />
         </View>
       </View>
-      <Notifications
-        markNotificationsAsViewed={markNotificationsAsViewed}
-        notifications={notifications}
-        ref={ref}
-      />
     </>
   );
 };

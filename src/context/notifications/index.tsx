@@ -7,6 +7,9 @@ import React, {
   useState,
 } from "react";
 
+import { useCustomBottomSheet } from "@components/BottomSheet/hook";
+import Notifications from "@screens/Notifications";
+
 import { Context, Notification } from "./types";
 
 const WS_URL = "ws://localhost:8080/notifications";
@@ -14,6 +17,11 @@ const WS_URL = "ws://localhost:8080/notifications";
 const NotificationsContext = createContext({} as Context);
 
 const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
+  //
+  const { ref, handleOpenModal } = useCustomBottomSheet();
+
+  const openNotifications = handleOpenModal;
+
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const ws = useRef(new WebSocket(WS_URL)).current;
@@ -47,11 +55,17 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
   };
   const actions = {
     markNotificationsAsViewed,
+    openNotifications,
   };
 
   return (
     <NotificationsContext.Provider value={{ state, actions }}>
       {children}
+      <Notifications
+        markNotificationsAsViewed={markNotificationsAsViewed}
+        notifications={notifications}
+        ref={ref}
+      />
     </NotificationsContext.Provider>
   );
 };

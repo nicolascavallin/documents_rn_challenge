@@ -4,6 +4,7 @@ export interface Context {
   };
   actions: {
     markNotificationsAsViewed: () => void;
+    openNotifications: () => void;
   };
 }
 
