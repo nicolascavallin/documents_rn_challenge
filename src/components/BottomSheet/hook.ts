@@ -39,7 +39,6 @@ export const useCustomBottomSheet = () => {
     handleOpenModal,
     handleCloseModal,
     canModalBeClosed,
-    //
     setCanModalBeClosed,
   };
 };

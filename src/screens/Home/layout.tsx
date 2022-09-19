@@ -51,13 +51,15 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
     [useGrid],
   );
 
-  const documentsSorted = useMemo(() => {
-    return documents.sort((a, b) => {
-      const dateA = new Date(a.CreatedAt);
-      const dateB = new Date(b.CreatedAt);
-      return dateB.getTime() - dateA.getTime();
-    });
-  }, [documents]);
+  const documentsSorted = useMemo(
+    () =>
+      documents.sort((a, b) => {
+        const dateA = new Date(a.CreatedAt);
+        const dateB = new Date(b.CreatedAt);
+        return dateB.getTime() - dateA.getTime();
+      }),
+    [documents],
+  );
 
   return (
     <View style={styles.container}>
