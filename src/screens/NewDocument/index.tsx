@@ -22,7 +22,7 @@ const NewDocument = forwardRef(
       <BottomSheet
         enablePanDownToClose={canModalBeClosed}
         ref={ref}
-        snapPoints={["80%"]}>
+        snapPoints={["55%"]}>
         <NewDocumentLayout
           handleClose={handleClose}
           setCanModalBeClosed={setCanModalBeClosed}

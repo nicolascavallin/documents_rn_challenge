@@ -3,7 +3,9 @@ import { StyleSheet } from "react-native";
 import { fonts } from "@theme";
 
 export default StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",

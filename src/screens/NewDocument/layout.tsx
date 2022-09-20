@@ -1,4 +1,10 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { BottomSheetView } from "@gorhom/bottom-sheet";
@@ -6,6 +12,8 @@ import { BottomSheetView } from "@gorhom/bottom-sheet";
 import CloseIcon from "@assets/icons/close";
 import FooterButton from "@components/FooterButton";
 import TextInput from "@components/TextInput";
+import { Status } from "@context/app/types";
+import { useTextInput } from "@utils/useTextInput";
 
 import styles from "./styles";
 
@@ -18,31 +26,61 @@ const NewDocumentLayout: FC<NewDocumentLayoutProps> = ({
   handleClose,
   setCanModalBeClosed,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const setUnsavedChanges = () => setCanModalBeClosed(false);
+  const [status, setStatus] = useState<Status>(Status.idle);
+
+  const [name, setName] = useTextInput();
+  const [version, setVersion] = useTextInput();
+
+  useEffect(() => {
+    if (name.length === 0 && version.length === 0) {
+      setCanModalBeClosed(true);
+    } else {
+      setCanModalBeClosed(false);
+    }
+  }, [name, version, setCanModalBeClosed]);
+
+  const isValid = name.length && version.length;
+
+  const handleSubmit = () => {
+    setStatus(Status.loading);
+  };
 
   return (
-    <BottomSheetView style={{ flex: 1 }}>
+    <BottomSheetView style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Add document</Text>
-        <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
+        <TouchableOpacity
+          disabled={status === Status.loading}
+          style={styles.closeButton}
+          onPress={handleClose}>
           <CloseIcon />
         </TouchableOpacity>
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.formTitle}>Document informations</Text>
-        <TextInput containerStyle={styles.inputContainer} label="Name" />
-        <TextInput containerStyle={styles.inputContainer} label="Version" />
+        <TextInput
+          containerStyle={styles.inputContainer}
+          label="Name"
+          textInputProps={{
+            value: name,
+            onChange: setName,
+          }}
+        />
+        <TextInput
+          containerStyle={styles.inputContainer}
+          label="Version"
+          textInputProps={{
+            value: version,
+            onChange: setVersion,
+          }}
+        />
       </View>
-      {/* <TouchableOpacity
-        style={{ height: 10, backgroundColor: "red" }}
-        onPress={() => setCanModalBeClosed(false)}
+      <FooterButton
+        isDisabled={!isValid}
+        isLoading={status === Status.loading}
+        title="Submit"
+        onPress={handleSubmit}
       />
-      <TouchableOpacity
-        style={{ height: 10, backgroundColor: "blue" }}
-        onPress={() => setCanModalBeClosed(true)}
-      /> */}
-      <FooterButton title="Submit" onPress={() => {}} />
     </BottomSheetView>
   );
 };

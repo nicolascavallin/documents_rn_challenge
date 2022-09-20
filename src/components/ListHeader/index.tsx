@@ -40,7 +40,7 @@ const ListHeader: FC<ListHeaderProps> = ({
           )}
           selectedTextProps={{ numberOfLines: 1 }}
           selectedTextStyle={styles.dropdownSelected}
-          style={{ flex: 1 }}
+          style={styles.dropdownContainer}
           value={sortOption}
           valueField="value"
           onChange={item => setSortOption(item.value)}

@@ -4,7 +4,6 @@ import { Alert } from "react-native";
 import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
 
 export const useCustomBottomSheet = () => {
-  //
   const { dismiss } = useBottomSheetModal();
 
   const ref = useRef<BottomSheetModal>(null);
@@ -17,17 +16,17 @@ export const useCustomBottomSheet = () => {
       dismiss();
     } else {
       Alert.alert(
-        "Are you sure you want to close the bottom sheet?",
-        undefined,
+        "Wait a minute...",
+        "You will lose your changes. Are you sure you want to close the modal?",
         [
           {
             style: "destructive",
-            text: "Yes",
+            text: "Yes, close",
             onPress: dismiss,
           },
           {
             style: "cancel",
-            text: "No",
+            text: "No, cancel",
           },
         ],
       );

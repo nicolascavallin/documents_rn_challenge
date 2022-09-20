@@ -21,6 +21,9 @@ export default StyleSheet.create({
   dropdown: {
     width: 190,
   },
+  dropdownContainer: {
+    flex: 1,
+  },
   dropdownOption: {
     ...fonts.selector,
   },
