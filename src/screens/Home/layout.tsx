@@ -1,12 +1,14 @@
 import React, { FC, useCallback, useMemo, useState } from "react";
 import { FlatList, RefreshControl, View } from "react-native";
 
+import PlusIcon from "@assets/icons/plus";
 import DocumentItem from "@components/DocumentItem";
 import FooterButton from "@components/FooterButton";
 import Header from "@components/Header";
 import ListHeader from "@components/ListHeader";
 import useApp from "@context/app/hook";
 import { Document, Status } from "@context/app/types";
+import { colors } from "@theme";
 
 import styles from "./styles";
 import { sortDocuments, SortOption } from "./utils";
@@ -17,6 +19,7 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
   const {
     apiData: { documents, status },
     handlePullToRefresh,
+    openNewDocument,
   } = useApp();
 
   const [sortOption, setSortOption] = useState(SortOption.created_new);
@@ -72,7 +75,11 @@ const HomeScreenLayout: FC<HomeScreenLayoutProps> = ({}) => {
         refreshControl={refreshControl}
         renderItem={renderItem}
       />
-      <FooterButton />
+      <FooterButton
+        leftIcon={<PlusIcon stroke={colors.white} />}
+        title="Add document"
+        onPress={openNewDocument}
+      />
     </View>
   );
 };
