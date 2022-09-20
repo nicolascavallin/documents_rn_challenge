@@ -10,6 +10,11 @@ export default StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.grayLine,
   },
+  header: {
+    ...fonts.header,
+    marginHorizontal: 16,
+    marginBottom: 8,
+  },
   notificationText: {
     ...fonts.smallText,
     color: colors.blackText,

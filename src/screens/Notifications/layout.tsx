@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { useCallback } from "react";
 import { Text, View } from "react-native";
 
@@ -40,10 +40,16 @@ const NotificationsLayout: FC<NotificationsLayoutProps> = ({
     [],
   );
 
+  const ListHeaderComponent = useMemo(
+    () => <Text style={styles.header}>Notifications</Text>,
+    [],
+  );
+
   return (
     <BottomSheetFlatList
       contentContainerStyle={{ paddingBottom }}
       data={notifications}
+      ListHeaderComponent={ListHeaderComponent}
       renderItem={renderItem}
     />
   );
