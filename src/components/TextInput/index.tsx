@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import {
-  TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
   Text,
   View,
   ViewStyle,
 } from "react-native";
+
+import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 
 import styles from "./styles";
 
@@ -23,7 +24,7 @@ const TextInput: FC<TextInputProps> = ({
   return (
     <View style={containerStyle}>
       {label ? <Text style={styles.label}>{label}</Text> : null}
-      <RNTextInput style={styles.textInput} {...textInputProps} />
+      <BottomSheetTextInput style={styles.textInput} {...textInputProps} />
     </View>
   );
 };
