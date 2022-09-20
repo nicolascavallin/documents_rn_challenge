@@ -29,9 +29,9 @@ const FooterButton: FC<FooterButtonProps> = ({
     <>
       <View style={[styles.container, { paddingBottom }]}>
         <Button disabled={isDisabled} isLoading={isLoading} onPress={onPress}>
-          {leftIcon ? leftIcon : null}
+          {leftIcon}
           <Text style={styles.textButton}>{title}</Text>
-          {rightIcon ? rightIcon : null}
+          {rightIcon}
         </Button>
       </View>
     </>
