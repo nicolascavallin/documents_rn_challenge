@@ -1,26 +1,39 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import { Text, View } from "react-native";
 
-import PlusIcon from "@assets/icons/plus";
 import Button from "@components/Button";
-import useApp from "@context/app/hook";
-import { colors } from "@theme";
 import useSafeArea from "@theme/useSafeArea";
 
 import styles from "./styles";
 
-interface FooterButtonProps {}
+interface FooterButtonProps {
+  title: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  onPress: () => void;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+}
 
-const FooterButton: FC<FooterButtonProps> = ({}) => {
+const FooterButton: FC<FooterButtonProps> = ({
+  title,
+  leftIcon,
+  rightIcon,
+  onPress,
+  isDisabled,
+  isLoading,
+}) => {
   const { paddingBottom } = useSafeArea();
-  const { openNewDocument } = useApp();
 
+  console.log("leftIcon", leftIcon);
+  console.log("rightIcon", rightIcon);
   return (
     <>
       <View style={[styles.container, { paddingBottom }]}>
-        <Button onPress={openNewDocument}>
-          <PlusIcon stroke={colors.white} />
-          <Text style={styles.textButton}>Add document</Text>
+        <Button disabled={isDisabled} isLoading={isLoading} onPress={onPress}>
+          {leftIcon ? leftIcon : null}
+          <Text style={styles.textButton}>{title}</Text>
+          {rightIcon ? rightIcon : null}
         </Button>
       </View>
     </>

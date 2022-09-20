@@ -12,7 +12,18 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   title: fonts.header,
+  formTitle: {
+    ...fonts.title,
+    marginBottom: 8,
+  },
   closeButton: {
     padding: 4,
+  },
+  formContainer: {
+    padding: 16,
+    flex: 1,
+  },
+  inputContainer: {
+    marginVertical: 8,
   },
 });
