@@ -25,8 +25,6 @@ const FooterButton: FC<FooterButtonProps> = ({
 }) => {
   const { paddingBottom } = useSafeArea();
 
-  console.log("leftIcon", leftIcon);
-  console.log("rightIcon", rightIcon);
   return (
     <>
       <View style={[styles.container, { paddingBottom }]}>
