@@ -21,10 +21,9 @@ If you want to get access to the server, please contact me.
 - Go to `ios` folder (if you are using macOS) and run `pod install` (if you are running an M1 Mac, please run `arch -x86_64 pod install` instead)
 - Run `yarn ios` or `yarn android` to run the app. (if you are running an M1 Mac, please run `arch -x86_64 yarn ios` instead).
 
+- If you experiment any connection issue with the app in Android, try to run `adb reverse tcp:8080 tcp:8080` and reload the app.
+
 ## Screenshots
-
-
-
 
 https://user-images.githubusercontent.com/22961489/191470605-6e2dd9bc-e524-45ea-8017-782eebee672c.mp4
 
