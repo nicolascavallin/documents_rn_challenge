@@ -33,11 +33,14 @@ export const useCustomBottomSheet = () => {
     }
   };
 
+  const forceClose = dismiss;
+
   return {
     ref,
     handleOpenModal,
     handleCloseModal,
     canModalBeClosed,
     setCanModalBeClosed,
+    forceClose,
   };
 };

@@ -10,7 +10,7 @@ import { useCustomBottomSheet } from "@components/BottomSheet/hook";
 import NewDocument from "@screens/NewDocument";
 
 import api from "./api";
-import { ApiData, Context, Status } from "./types";
+import { ApiData, Context, CreateDocument, Status } from "./types";
 
 const AppContext = createContext({} as Context);
 
@@ -22,12 +22,16 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
     canModalBeClosed,
     handleCloseModal,
     setCanModalBeClosed,
+    forceClose,
   } = useCustomBottomSheet();
 
   const [apiData, setApiData] = useState<ApiData>({
     status: Status.idle,
     documents: [],
   });
+
+  const handleAddDocument = (payload: CreateDocument) =>
+    api.createDocument(payload, setApiData);
 
   /**
    * Considering that there is no extra neededs for initial login,
@@ -45,6 +49,7 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
   const actions = {
     handlePullToRefresh,
     openNewDocument,
+    handleAddDocument,
   };
 
   return (
@@ -52,6 +57,8 @@ const AppProvider: FC<PropsWithChildren> = ({ children }) => {
       {children}
       <NewDocument
         canModalBeClosed={canModalBeClosed}
+        forceClose={forceClose}
+        handleAddDocument={handleAddDocument}
         handleClose={handleCloseModal}
         ref={ref}
         setCanModalBeClosed={setCanModalBeClosed}

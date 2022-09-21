@@ -5,6 +5,7 @@ export interface Context {
   actions: {
     handlePullToRefresh: () => void;
     openNewDocument: () => void;
+    handleAddDocument: (payload: CreateDocument) => Promise<Document | null>;
   };
 }
 
@@ -33,4 +34,9 @@ export interface Document {
 export interface Contributor {
   ID: string;
   Name: string;
+}
+
+export interface CreateDocument {
+  name: string;
+  version: string;
 }

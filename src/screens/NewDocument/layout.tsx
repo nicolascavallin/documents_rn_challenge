@@ -5,26 +5,30 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 
 import { BottomSheetView } from "@gorhom/bottom-sheet";
 
 import CloseIcon from "@assets/icons/close";
 import FooterButton from "@components/FooterButton";
 import TextInput from "@components/TextInput";
-import { Status } from "@context/app/types";
+import { CreateDocument, Status } from "@context/app/types";
 import { useTextInput } from "@utils/useTextInput";
 
 import styles from "./styles";
 
 interface NewDocumentLayoutProps {
   handleClose: () => void;
+  forceClose: () => void;
   setCanModalBeClosed: Dispatch<SetStateAction<boolean>>;
+  handleAddDocument: (payload: CreateDocument) => Promise<Document | null>;
 }
 
 const NewDocumentLayout: FC<NewDocumentLayoutProps> = ({
   handleClose,
+  forceClose,
   setCanModalBeClosed,
+  handleAddDocument,
 }) => {
   const [status, setStatus] = useState<Status>(Status.idle);
 
@@ -41,8 +45,17 @@ const NewDocumentLayout: FC<NewDocumentLayoutProps> = ({
 
   const isValid = name.length && version.length;
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setStatus(Status.loading);
+
+    const response = await handleAddDocument({ name, version });
+
+    if (response) {
+      forceClose();
+    } else {
+      setStatus(Status.error);
+      Alert.alert("Error", "Something went wrong, please try again later");
+    }
   };
 
   return (

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { ApiData, Status } from "./types";
+import { ApiData, CreateDocument, Document, Status } from "./types";
 
 const API_URL = "http://localhost:8080/documents";
 
@@ -23,6 +23,38 @@ export default {
       setApiData({ status: Status.ready, documents: response });
     } catch (error) {
       setApiData({ status: Status.error, documents: [] });
+    }
+  },
+  createDocument: async (
+    payload: CreateDocument,
+    setApiData: Dispatch<SetStateAction<ApiData>>,
+  ): Promise<Document | null> => {
+    try {
+      /**
+       * In terms to simulate an HTTP Post Request, I'm using a "pause" timer
+       */
+
+      // @ts-ignore
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      const newDocument: Document = {
+        ID: new Date().toISOString(),
+        CreatedAt: new Date(),
+        UpdatedAt: new Date(),
+        Title: payload.name,
+        Attachments: ["Notes template"],
+        Contributors: [{ ID: "1", Name: "John Doe" }],
+        Version: payload.version,
+      };
+
+      setApiData(oldState => ({
+        ...oldState,
+        documents: [newDocument, ...oldState.documents],
+      }));
+
+      return newDocument;
+    } catch (error) {
+      return null;
     }
   },
 };
