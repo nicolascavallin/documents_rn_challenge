@@ -24,7 +24,9 @@ If you want to get access to the server, please contact me.
 ## Screenshots
 
 
-[Video 1](demo/01.mp4)
+
+
+https://user-images.githubusercontent.com/22961489/191470605-6e2dd9bc-e524-45ea-8017-782eebee672c.mp4
 
 ![Screenshot 1](demo/01.png)
 
